@@ -1,8 +1,10 @@
 -- firt we droped the table if already existated 
-DROP TABLE IF EXISTS  basic.product_basics;
+DROP TABLE IF EXISTS  basics.product_basics;
 
 -- then we create table with all the required colums with it's configurations id,name,stock, total_value, price, is_active
-CREATE TABLE basic.product_basics(
+CREATE SCHEMA IF NOT EXISTS basic;
+DROP SCHEMA IF EXISTS basic;
+CREATE TABLE basics.product_basics(
     id SERIAL PRIMARY KEY ,
 
     name VARCHAR(100) NOT NULL,
@@ -16,15 +18,15 @@ CREATE TABLE basic.product_basics(
 
     price NUMERIC (10,2),
     -- stores exact desimal value
-    -- 10 means 10 digits in the start and 2 means 2 digit after the desimal point .... 9999999999.99
+    -- 10 means 10 digits in the start and 2 means 2 digit after the desimal point .... 99999999.99
 
     is_active BOOLEAN DEFAULT true
-)
+);
 
 -- quries 
 
-INSERT INTO basic.product_basics
-    (name,description,stock,total_view, price , is_active)
+INSERT INTO basics.product_basics
+    (name,description,stock,total_value, price , is_active)
 VALUES 
 (
     'product 1',
@@ -33,10 +35,18 @@ VALUES
     1200,
     2346.77,
     true
-)
+),
+(
+    'product 2',
+    'product dec',
+    100,
+    1200,
+    2346.77,
+    false
+);
 
-SELECT* FROM baisc.product_basics
+SELECT * FROM basics.product_basics;
 
 SELECT id, name , price, is_active 
-FROM basic.product_basics
+FROM basics.product_basics
 WHERE is_active;
