@@ -18,3 +18,5 @@ SELECT name , category, description
 FROM products
 WHERE name ILKE '%chair%'
     OR description ILKE '%chair%'
+
+    
